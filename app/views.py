@@ -8,7 +8,7 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
-
+import time
 
 ###
 # Routing for your application.
@@ -53,6 +53,15 @@ def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
 
+@app.route("/profile/")
+def profile():
+    """Render website's profile page."""
+    return render_template("profile.html", time=timeinfo())
+ 
+def timeinfo():
+    now = time.strftime("%c")
+    return now
+
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0",port="8888")
+    app.run(debug=True,host="0.0.0.0",port="8080")
